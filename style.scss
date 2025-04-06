@@ -38,85 +38,89 @@ body {
   padding: 0;
   background-color: $background-color;
   color: $text-color;
+  line-height: 1.6;
 }
 
+// Header styles
 header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 20px;
   background: $light-bg;
   box-shadow: $box-shadow;
+  padding: 20px;
   position: sticky;
   top: 0;
   z-index: 100;
   animation: slideIn $transition-normal;
-}
 
-nav {
-  ul {
-    list-style: none;
-    display: flex;
-    gap: 20px;
+  h1 {
     margin: 0;
-    padding: 0;
+    font-size: 28px;
+    color: $primary-color;
   }
-  
-  a {
-    text-decoration: none;
-    color: $text-color;
-    font-weight: 500;
-    padding: 5px 0;
-    position: relative;
-    transition: color $transition-normal;
 
-    &::after {
-      content: '';
-      position: absolute;
-      bottom: -2px;
-      left: 0;
-      width: 0;
-      height: 2px;
-      background: $accent-color;
-      transition: width $transition-normal;
+  nav {
+    margin-top: 20px;
+
+    ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      gap: 30px;
+      justify-content: center;
     }
 
-    &:hover {
-      color: $accent-color;
+    a {
+      text-decoration: none;
+      color: $text-color;
+      font-weight: 500;
+      padding: 5px 0;
+      position: relative;
+      transition: color $transition-normal;
 
       &::after {
-        width: 100%;
+        content: '';
+        position: absolute;
+        bottom: -2px;
+        left: 0;
+        width: 0;
+        height: 2px;
+        background: $accent-color;
+        transition: width $transition-normal;
+      }
+
+      &:hover {
+        color: $accent-color;
+        &::after {
+          width: 100%;
+        }
+      }
+
+      &[aria-current="page"] {
+        color: $accent-color;
+        &::after {
+          width: 100%;
+        }
       }
     }
   }
 }
 
-// Container and main layout
+// Container styles
 .container {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 20px;
+  padding: 40px 20px;
   display: grid;
-  grid-template-columns: 2fr 1fr;
-  gap: 20px;
+  gap: 30px;
   animation: fadeIn $transition-slow;
+
+  &:not(.secondary-page) {
+    grid-template-columns: 2fr 1fr;
+  }
 
   &.secondary-page {
     grid-template-columns: repeat(3, 1fr);
-    gap: 30px;
-    padding: 40px 20px;
   }
-}
-
-// Grid layouts
-.categories-grid,
-.news-grid,
-.popular-grid,
-.trending-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 30px;
-  animation: fadeIn $transition-slow;
 }
 
 // Card styles
@@ -129,10 +133,11 @@ nav {
   height: 100%;
   display: flex;
   flex-direction: column;
+  animation: fadeIn $transition-normal;
 
   &:hover {
     transform: translateY(-5px);
-    box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+    box-shadow: 0 8px 16px rgba(0,0,0,0.15);
   }
 
   img {
@@ -147,14 +152,14 @@ nav {
   }
 
   .content {
-    padding: 20px;
+    padding: 25px;
     flex-grow: 1;
     display: flex;
     flex-direction: column;
 
-    h2, h3 {
-      margin: 0 0 15px 0;
-      font-size: 22px;
+    h2 {
+      margin: 0 0 15px;
+      font-size: 24px;
       color: $text-color;
       transition: color $transition-normal;
 
@@ -164,14 +169,34 @@ nav {
     }
 
     p {
-      margin: 0 0 20px 0;
+      margin: 0 0 20px;
       color: $text-light;
       flex-grow: 1;
     }
   }
 }
 
-// Featured section
+// Button styles
+.button {
+  display: inline-block;
+  background: $accent-color;
+  color: $light-bg;
+  padding: 12px 25px;
+  border-radius: 5px;
+  text-decoration: none;
+  font-weight: bold;
+  transition: all $transition-normal;
+  align-self: flex-start;
+  border: none;
+  cursor: pointer;
+
+  &:hover {
+    background: color.adjust($accent-color, $lightness: -10%);
+    transform: translateY(-2px);
+  }
+}
+
+// Featured section styles
 .featured {
   grid-column: span 2;
   background: $light-bg;
@@ -191,61 +216,121 @@ nav {
   }
 }
 
-// Button styles
-.button {
+// News section styles
+.news {
+  background: $dark-bg;
+  padding: 30px;
+  border-radius: $border-radius;
+  color: $light-bg;
+
+  h3 {
+    color: $highlight-color;
+    margin-top: 0;
+  }
+
+  article {
+    padding: 20px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+
+    &:last-child {
+      border-bottom: none;
+    }
+
+    h4 {
+      margin: 0 0 10px;
+      transition: color $transition-normal;
+
+      &:hover {
+        color: $highlight-color;
+        cursor: pointer;
+      }
+    }
+
+    p {
+      margin: 0;
+      color: rgba(255,255,255,0.7);
+    }
+  }
+}
+
+// Additional components
+.views {
+  color: $accent-color;
+  font-weight: bold;
+  margin-bottom: 15px;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+
+  &::before {
+    content: '👁';
+    font-size: 1.2em;
+  }
+}
+
+.trend-tag {
   display: inline-block;
   background: $accent-color;
   color: $light-bg;
-  padding: 12px 25px;
-  border: none;
+  padding: 8px 15px;
   border-radius: 5px;
+  font-size: 0.9em;
   font-weight: bold;
-  text-decoration: none;
+  margin-bottom: 15px;
   transition: all $transition-normal;
-  cursor: pointer;
 
   &:hover {
-    background: darken($accent-color, 10%);
+    background: color.adjust($accent-color, $lightness: -10%);
     transform: translateY(-2px);
+  }
+}
+
+.trend-stats {
+  color: $text-light;
+  font-size: 0.9em;
+  margin: 15px 0;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+
+  &::before {
+    content: '🔥';
+    font-size: 1.2em;
   }
 }
 
 // Responsive styles
 @media (max-width: 1024px) {
-  .categories-grid,
-  .news-grid,
-  .popular-grid,
-  .trending-grid,
-  .container.secondary-page {
+  .container.secondary-page,
+  .container:not(.secondary-page) {
     grid-template-columns: repeat(2, 1fr);
   }
 
   .featured {
     grid-column: span 2;
   }
+
+  header nav ul {
+    gap: 20px;
+  }
 }
 
 @media (max-width: 768px) {
   .container,
   .container.secondary-page,
-  .categories-grid,
-  .news-grid,
-  .popular-grid,
-  .trending-grid {
+  .container:not(.secondary-page) {
     grid-template-columns: 1fr;
     padding: 20px;
   }
 
   header {
-    flex-direction: column;
     text-align: center;
     padding: 15px;
-  }
 
-  nav ul {
-    flex-direction: column;
-    align-items: center;
-    gap: 10px;
+    nav ul {
+      flex-direction: column;
+      gap: 15px;
+    }
   }
 
   .featured {
@@ -254,5 +339,9 @@ nav {
     img {
       height: 250px;
     }
+  }
+
+  .card img {
+    height: 200px;
   }
 }

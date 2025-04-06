@@ -1,88 +1,17 @@
-body {
-  font-family: Arial, sans-serif;
-  margin: 0;
-  padding: 0;
-  background-color: #f8f8f8;
-  color: #333;
-}
+/* Error: There is no module with the namespace "color".
+ *     ,
+ * 194 |     background: color.adjust($accent-color, $lightness: -10%);
+ *     |                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ *     '
+ *   style.scss 194:17  root stylesheet */
 
-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 20px;
-  background: #fff;
-}
-
-nav ul {
-  list-style: none;
-  display: flex;
-  gap: 15px;
-}
-
-nav a {
-  text-decoration: none;
-  color: #333;
-  font-weight: bold;
-}
-
-.container {
-  display: flex;
-  padding: 20px;
-  gap: 20px;
-}
-
-.featured {
-  flex: 2;
-  background: #fff;
-  padding: 20px;
-}
-
-.featured img {
-  width: 100%;
-  border-radius: 10px;
-}
-
-.content h2 {
-  font-size: 24px;
-  color: #000;
-}
-
-button {
-  background: #e63946;
-  color: #fff;
-  padding: 10px 15px;
-  border: none;
-  cursor: pointer;
-}
-
-.news {
-  flex: 1;
-  background: #222;
-  color: #fff;
-  padding: 20px;
-  border-radius: 10px;
-}
-
-.news h3 {
-  color: #f4a261;
-}
-
-.articles {
-  display: flex;
-  justify-content: space-between;
-  padding: 20px;
-}
-
-.article {
-  background: #fff;
-  padding: 10px;
-  width: 30%;
-  border-radius: 10px;
-  text-align: center;
-}
-
-.article img {
-  width: 100%;
-  border-radius: 10px;
+body::before {
+  font-family: "Source Code Pro", "SF Mono", Monaco, Inconsolata, "Fira Mono",
+      "Droid Sans Mono", monospace, monospace;
+  white-space: pre;
+  display: block;
+  padding: 1em;
+  margin-bottom: 1em;
+  border-bottom: 2px solid black;
+  content: 'Error: There is no module with the namespace "color".\a     \2577 \a 194 \2502      background: color.adjust($accent-color, $lightness: -10%);\d\a     \2502                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\a     \2575 \a   style.scss 194:17  root stylesheet';
 }

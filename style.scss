@@ -1,57 +1,33 @@
-// Variables
-$primary-color: #e63946;
-$secondary-color: #f4a261;
+$primary-color: #333;
+$background-color: #f8f8f8;
+$accent-color: #e63946;
+$highlight-color: #f4a261;
 $dark-bg: #222;
 $light-bg: #fff;
 $text-color: #333;
 $text-light: #666;
-$text-lighter: #aaa;
 $border-radius: 10px;
-$box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+$box-shadow: 0 4px 8px rgba(0,0,0,0.1);
 
 // Animation variables
 $transition-fast: 0.2s ease;
 $transition-normal: 0.3s ease;
 $transition-slow: 0.5s ease;
-$hover-transform: scale(1.02);
-$hover-lift: translateY(-5px);
 
-// Keyframes
+// Animations
 @keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+  from { opacity: 0; }
+  to { opacity: 1; }
 }
 
 @keyframes slideIn {
-  from {
-    transform: translateX(-20px);
+  from { 
+    transform: translateY(20px);
     opacity: 0;
   }
   to {
-    transform: translateX(0);
+    transform: translateY(0);
     opacity: 1;
-  }
-}
-
-// Mixins
-@mixin hover-lift {
-  transition: transform $transition-normal, box-shadow $transition-normal;
-  &:hover {
-    transform: $hover-lift;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-  }
-}
-
-@mixin hover-scale {
-  transition: transform $transition-normal;
-  &:hover {
-    transform: $hover-transform;
   }
 }
 
@@ -60,11 +36,10 @@ body {
   font-family: Arial, sans-serif;
   margin: 0;
   padding: 0;
-  background-color: #f8f8f8;
+  background-color: $background-color;
   color: $text-color;
 }
 
-// Header styles
 header {
   display: flex;
   justify-content: space-between;
@@ -72,49 +47,45 @@ header {
   padding: 20px;
   background: $light-bg;
   box-shadow: $box-shadow;
-  animation: slideIn $transition-slow;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  animation: slideIn $transition-normal;
+}
 
-  h1 {
-    transition: color $transition-normal;
-    &:hover {
-      color: $primary-color;
-    }
+nav {
+  ul {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+    margin: 0;
+    padding: 0;
   }
+  
+  a {
+    text-decoration: none;
+    color: $text-color;
+    font-weight: 500;
+    padding: 5px 0;
+    position: relative;
+    transition: color $transition-normal;
 
-  nav {
-    ul {
-      list-style: none;
-      display: flex;
-      gap: 15px;
-      margin: 0;
-      padding: 0;
+    &::after {
+      content: '';
+      position: absolute;
+      bottom: -2px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: $accent-color;
+      transition: width $transition-normal;
     }
 
-    a {
-      text-decoration: none;
-      color: $text-color;
-      font-weight: bold;
-      position: relative;
-      padding: 5px 0;
-      transition: color $transition-normal;
+    &:hover {
+      color: $accent-color;
 
       &::after {
-        content: '';
-        position: absolute;
-        bottom: 0;
-        left: 0;
         width: 100%;
-        height: 2px;
-        background-color: $primary-color;
-        transform: scaleX(0);
-        transition: transform $transition-normal;
-      }
-
-      &:hover {
-        color: $primary-color;
-        &::after {
-          transform: scaleX(1);
-        }
       }
     }
   }
@@ -137,207 +108,27 @@ header {
   }
 }
 
-// Featured section
-.featured {
-  background: $light-bg;
-  padding: 20px;
-  border-radius: $border-radius;
-  box-shadow: $box-shadow;
-  @include hover-lift;
-
-  img {
-    width: 100%;
-    border-radius: $border-radius;
-    height: 300px;
-    object-fit: cover;
-    transition: transform $transition-normal;
-    &:hover {
-      transform: scale(1.03);
-    }
-  }
-}
-
-.content {
-  h2 {
-    font-size: 24px;
-    color: #000;
-    margin-top: 20px;
-    transition: color $transition-normal;
-    &:hover {
-      color: $primary-color;
-    }
-  }
-}
-
-// Button styles
-button {
-  background: $primary-color;
-  color: $light-bg;
-  padding: 10px 20px;
-  border: none;
-  cursor: pointer;
-  font-weight: bold;
-  border-radius: 5px;
-  transition: all $transition-normal;
-  position: relative;
-  overflow: hidden;
-
-  &::before {
-    content: '';
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 0;
-    height: 0;
-    background: rgba(255,255,255,0.2);
-    border-radius: 50%;
-    transform: translate(-50%, -50%);
-    transition: width $transition-normal, height $transition-normal;
-  }
-
-  &:hover {
-    background: darken($primary-color, 10%);
-    transform: translateY(-2px);
-    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-
-    &::before {
-      width: 300px;
-      height: 300px;
-    }
-  }
-
-  &:active {
-    transform: translateY(0);
-  }
-}
-
-// News section
-.news {
-  background: $dark-bg;
-  color: $light-bg;
-  padding: 20px;
-  border-radius: $border-radius;
-  height: fit-content;
-  @include hover-lift;
-
-  h3 {
-    color: $secondary-color;
-    margin-top: 0;
-    transition: color $transition-normal;
-  }
-
-  article {
-    padding: 15px 0;
-    border-bottom: 1px solid #444;
-    transition: transform $transition-normal;
-
-    &:hover {
-      transform: translateX(10px);
-    }
-
-    &:last-child {
-      border-bottom: none;
-    }
-  }
-
-  h4 {
-    margin: 0 0 10px 0;
-    color: $light-bg;
-    transition: color $transition-normal;
-
-    &:hover {
-      color: $secondary-color;
-    }
-  }
-
-  p {
-    margin: 0;
-    color: $text-lighter;
-  }
-}
-
-// Articles grid
-.articles {
-  grid-column: 1 / -1;
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 20px;
-  padding: 20px 0;
-}
-
-.article {
-  background: $light-bg;
-  padding: 15px;
-  border-radius: $border-radius;
-  box-shadow: $box-shadow;
-  @include hover-lift;
-
-  img {
-    width: 100%;
-    height: 200px;
-    object-fit: cover;
-    border-radius: $border-radius;
-    transition: transform $transition-normal;
-
-    &:hover {
-      transform: scale(1.05);
-    }
-  }
-
-  h3 {
-    margin: 15px 0 10px 0;
-    transition: color $transition-normal;
-
-    &:hover {
-      color: $primary-color;
-    }
-  }
-
-  p {
-    margin: 0;
-    color: $text-light;
-  }
-}
-
-// Footer styles
-footer {
-  text-align: center;
-  padding: 20px;
-  background: $dark-bg;
-  color: $light-bg;
-  margin-top: 40px;
-  animation: fadeIn $transition-slow;
-
-  p {
-    margin: 0;
-    transition: color $transition-normal;
-
-    &:hover {
-      color: $secondary-color;
-    }
-  }
-}
-
-// Categories page
-.categories-grid {
-  max-width: 1200px;
-  margin: 0 auto;
+// Grid layouts
+.categories-grid,
+.news-grid,
+.popular-grid,
+.trending-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 30px;
-  padding: 40px 20px;
   animation: fadeIn $transition-slow;
 }
 
-.category-card {
+// Card styles
+.card {
   background: $light-bg;
   border-radius: $border-radius;
   overflow: hidden;
   box-shadow: $box-shadow;
   transition: all $transition-normal;
+  height: 100%;
   display: flex;
   flex-direction: column;
-  height: 100%;
 
   &:hover {
     transform: translateY(-5px);
@@ -355,292 +146,67 @@ footer {
     }
   }
 
-  h2 {
+  .content {
     padding: 20px;
-    margin: 0;
-    font-size: 22px;
-    color: $text-color;
-    transition: color $transition-normal;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
 
-    &:hover {
-      color: $primary-color;
+    h2, h3 {
+      margin: 0 0 15px 0;
+      font-size: 22px;
+      color: $text-color;
+      transition: color $transition-normal;
+
+      &:hover {
+        color: $accent-color;
+      }
+    }
+
+    p {
+      margin: 0 0 20px 0;
+      color: $text-light;
+      flex-grow: 1;
     }
   }
-
-  p {
-    padding: 0 20px 20px;
-    margin: 0;
-    color: $text-light;
-    flex-grow: 1;
-  }
 }
 
-// News page
-.news-grid {
-  max-width: 1200px;
-  margin: 0 auto;
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 30px;
-  padding: 40px 20px;
-  animation: fadeIn $transition-slow;
-}
-
-.news-card {
+// Featured section
+.featured {
+  grid-column: span 2;
   background: $light-bg;
   border-radius: $border-radius;
   overflow: hidden;
   box-shadow: $box-shadow;
-  transition: all $transition-normal;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-
-  &:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 8px 16px rgba(0,0,0,0.1);
-  }
+  animation: slideIn $transition-normal;
 
   img {
     width: 100%;
-    height: 250px;
+    height: 400px;
     object-fit: cover;
-    transition: transform $transition-normal;
+  }
 
-    &:hover {
-      transform: scale(1.05);
-    }
+  .content {
+    padding: 30px;
   }
 }
 
-.news-content {
-  padding: 25px;
-  flex-grow: 1;
-  display: flex;
-  flex-direction: column;
-
-  h2 {
-    margin: 0 0 15px 0;
-    font-size: 24px;
-    color: $text-color;
-    transition: color $transition-normal;
-
-    &:hover {
-      color: $primary-color;
-    }
-  }
-
-  p {
-    margin: 0 0 20px 0;
-    color: $text-light;
-    flex-grow: 1;
-  }
-}
-
-.date {
-  color: $text-light;
-  font-size: 0.9em;
-  display: flex;
-  align-items: center;
-  gap: 5px;
-
-  &::before {
-    content: '•';
-    color: $primary-color;
-  }
-}
-
-// Popular page
-.popular-articles {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 40px 20px;
-  animation: fadeIn $transition-slow;
-
-  h2 {
-    margin: 0 0 30px 0;
-    font-size: 32px;
-    color: $text-color;
-    text-align: center;
-  }
-}
-
-.popular-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 30px;
-}
-
-.popular-card {
-  background: $light-bg;
-  border-radius: $border-radius;
-  overflow: hidden;
-  box-shadow: $box-shadow;
-  transition: all $transition-normal;
-  display: flex;
-  flex-direction: column;
-  height: 100%;
-
-  &:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 8px 16px rgba(0,0,0,0.1);
-  }
-
-  img {
-    width: 100%;
-    height: 250px;
-    object-fit: cover;
-    transition: transform $transition-normal;
-
-    &:hover {
-      transform: scale(1.05);
-    }
-  }
-}
-
-.popular-content {
-  padding: 25px;
-  flex-grow: 1;
-  display: flex;
-  flex-direction: column;
-
-  h3 {
-    margin: 0 0 15px 0;
-    font-size: 24px;
-    color: $text-color;
-    transition: color $transition-normal;
-
-    &:hover {
-      color: $primary-color;
-    }
-  }
-
-  p {
-    margin: 0 0 20px 0;
-    color: $text-light;
-    flex-grow: 1;
-  }
-}
-
-.views {
-  color: $primary-color;
-  font-weight: bold;
-  display: flex;
-  align-items: center;
-  gap: 5px;
-
-  &::before {
-    content: '👁';
-    font-size: 1.2em;
-  }
-}
-
-// Trending page
-.trending-section {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 40px 20px;
-  animation: fadeIn $transition-slow;
-
-  h2 {
-    margin: 0 0 30px 0;
-    font-size: 32px;
-    color: $text-color;
-    text-align: center;
-  }
-}
-
-.trending-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 30px;
-
-  .trending-card.hot {
-    grid-column: span 3;
-    display: grid;
-    grid-template-columns: 2fr 1fr;
-    gap: 0;
-  }
-}
-
-.trending-card {
-  background: $light-bg;
-  border-radius: $border-radius;
-  overflow: hidden;
-  box-shadow: $box-shadow;
-  transition: all $transition-normal;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-
-  &:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 8px 16px rgba(0,0,0,0.1);
-  }
-
-  img {
-    width: 100%;
-    height: 250px;
-    object-fit: cover;
-    transition: transform $transition-normal;
-
-    &:hover {
-      transform: scale(1.05);
-    }
-  }
-}
-
-.trending-content {
-  padding: 25px;
-  flex-grow: 1;
-  display: flex;
-  flex-direction: column;
-
-  h3 {
-    margin: 15px 0;
-    font-size: 24px;
-    color: $text-color;
-    transition: color $transition-normal;
-
-    &:hover {
-      color: $primary-color;
-    }
-  }
-
-  p {
-    margin: 0 0 20px 0;
-    color: $text-light;
-    flex-grow: 1;
-  }
-}
-
-.trend-tag {
-  background: $primary-color;
-  color: $light-bg;
-  padding: 8px 15px;
-  border-radius: 5px;
-  font-size: 0.9em;
+// Button styles
+.button {
   display: inline-block;
+  background: $accent-color;
+  color: $light-bg;
+  padding: 12px 25px;
+  border: none;
+  border-radius: 5px;
   font-weight: bold;
+  text-decoration: none;
   transition: all $transition-normal;
+  cursor: pointer;
 
   &:hover {
-    background: darken($primary-color, 5%);
+    background: darken($accent-color, 10%);
     transform: translateY(-2px);
-  }
-}
-
-.trend-stats {
-  color: $text-light;
-  font-size: 0.9em;
-  display: flex;
-  align-items: center;
-  gap: 5px;
-  margin-top: 15px;
-
-  &::before {
-    content: '🔥';
-    font-size: 1.2em;
   }
 }
 
@@ -654,8 +220,8 @@ footer {
     grid-template-columns: repeat(2, 1fr);
   }
 
-  .trending-card.hot {
-    grid-column: span 2 !important;
+  .featured {
+    grid-column: span 2;
   }
 }
 
@@ -670,15 +236,6 @@ footer {
     padding: 20px;
   }
 
-  .trending-card.hot {
-    grid-column: span 1 !important;
-    grid-column: 1fr;
-
-    img {
-      height: 250px;
-    }
-  }
-
   header {
     flex-direction: column;
     text-align: center;
@@ -691,16 +248,11 @@ footer {
     gap: 10px;
   }
 
-  .featured img {
-    height: 200px;
-  }
+  .featured {
+    grid-column: span 1;
 
-  .category-card,
-  .news-card,
-  .popular-card,
-  .trending-card {
-    h2, h3 {
-      font-size: 20px;
+    img {
+      height: 250px;
     }
   }
 }

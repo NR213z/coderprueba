@@ -107,9 +107,9 @@ header {
 
 // Page content wrapper
 .page-content {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 60px;
   max-width: 1200px;
   margin: 0 auto;
   padding: 40px;
@@ -120,113 +120,123 @@ header {
   }
 
   @media (max-width: 768px) {
-    grid-template-columns: 1fr;
     gap: 30px;
   }
+}
 
-  .container {
+// Main sections container
+.main-sections {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 30px;
+  width: 100%;
+
+  @media (max-width: 1024px) {
+    grid-template-columns: 1fr;
+  }
+}
+
+// Featured section styles
+.featured {
+  background: $light-bg;
+  border-radius: $border-radius;
+  overflow: hidden;
+  box-shadow: $box-shadow;
+  animation: slideIn $transition-normal;
+
+  img {
     width: 100%;
-    display: grid;
-    gap: 30px;
-    animation: fadeIn $transition-slow;
+    height: 400px;
+    object-fit: cover;
+  }
 
-    &:not(.secondary-page) {
-      grid-template-columns: 2fr 1fr;
+  .content {
+    padding: 30px;
+
+    h2 {
+      font-size: 2.5rem;
+      margin-bottom: 20px;
+      line-height: 1.2;
     }
 
-    &.secondary-page {
-      grid-template-columns: repeat(3, 1fr);
-    }
-
-    @media (max-width: 1024px) {
-      &:not(.secondary-page) {
-        grid-template-columns: 1fr;
-      }
+    p {
+      font-size: 1.1rem;
+      margin-bottom: 30px;
     }
   }
 
-  .articles {
-    width: 100%;
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 30px;
-    animation: fadeIn $transition-slow;
+  @media (max-width: 768px) {
+    img {
+      height: 300px;
+    }
 
-    .article {
-      background: $light-bg;
-      border-radius: $border-radius;
-      overflow: hidden;
-      box-shadow: $box-shadow;
-      transition: all $transition-normal;
-      height: 100%;
-      display: flex;
-      flex-direction: row;
-      align-items: center;
+    .content {
+      padding: 20px;
 
-      &:hover {
-        transform: translateY(-5px);
-        box-shadow: 0 8px 16px rgba(0,0,0,0.15);
-      }
-
-      img {
-        width: 120px;
-        height: 120px;
-        object-fit: cover;
-        transition: transform $transition-normal;
-
-        &:hover {
-          transform: scale(1.05);
-        }
-      }
-
-      .article-content {
-        padding: 20px;
-        flex-grow: 1;
-
-        h3 {
-          margin: 0 0 10px;
-          font-size: 1.2rem;
-          color: $text-color;
-          transition: color $transition-normal;
-
-          &:hover {
-            color: $accent-color;
-          }
-        }
-
-        p {
-          margin: 0;
-          color: $text-light;
-          line-height: 1.5;
-        }
+      h2 {
+        font-size: 2rem;
       }
     }
   }
 }
 
-// Container styles
-.container {
-  width: 100%;
-  display: grid;
-  gap: 30px;
-  animation: fadeIn $transition-slow;
+// News section styles
+.news {
+  background: $dark-bg;
+  padding: 30px;
+  border-radius: $border-radius;
+  color: $light-bg;
+  height: fit-content;
 
-  &:not(.secondary-page) {
-    grid-template-columns: 2fr 1fr;
+  h3 {
+    color: $highlight-color;
+    margin-top: 0;
+    font-size: 1.5rem;
+    margin-bottom: 20px;
   }
 
-  &.secondary-page {
-    grid-template-columns: repeat(3, 1fr);
+  article {
+    padding: 20px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+
+    &:last-child {
+      border-bottom: none;
+      padding-bottom: 0;
+    }
+
+    h4 {
+      margin: 0 0 10px;
+      font-size: 1.2rem;
+      transition: color $transition-normal;
+
+      &:hover {
+        color: $highlight-color;
+        cursor: pointer;
+      }
+    }
+
+    p {
+      margin: 0;
+      color: rgba(255,255,255,0.7);
+      line-height: 1.5;
+    }
   }
 }
 
 // Articles section
 .articles {
-  width: 100%;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 30px;
-  animation: fadeIn $transition-slow;
+  width: 100%;
+
+  @media (max-width: 1024px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @media (max-width: 768px) {
+    grid-template-columns: 1fr;
+  }
 
   .article {
     background: $light-bg;
@@ -254,25 +264,43 @@ header {
       }
     }
 
-    h3 {
-      padding: 20px 20px 10px;
-      margin: 0;
-      font-size: 1.3rem;
-      color: $text-color;
-      transition: color $transition-normal;
+    .article-content {
+      padding: 20px;
+      flex-grow: 1;
 
-      &:hover {
-        color: $accent-color;
+      h3 {
+        margin: 0 0 10px;
+        font-size: 1.2rem;
+        color: $text-color;
+        transition: color $transition-normal;
+
+        &:hover {
+          color: $accent-color;
+        }
+      }
+
+      p {
+        margin: 0;
+        color: $text-light;
+        line-height: 1.5;
       }
     }
+  }
+}
 
-    p {
-      padding: 0 20px 20px;
-      margin: 0;
-      color: $text-light;
-      flex-grow: 1;
-      line-height: 1.5;
-    }
+// Container styles
+.container {
+  width: 100%;
+  display: grid;
+  gap: 30px;
+  animation: fadeIn $transition-slow;
+
+  &:not(.secondary-page) {
+    grid-template-columns: 2fr 1fr;
+  }
+
+  &.secondary-page {
+    grid-template-columns: repeat(3, 1fr);
   }
 }
 
@@ -346,80 +374,6 @@ header {
   &:hover {
     background: darken($accent-color, 10%);
     transform: translateY(-2px);
-  }
-}
-
-// Featured section styles
-.featured {
-  grid-column: span 2;
-  background: $light-bg;
-  border-radius: $border-radius;
-  overflow: hidden;
-  box-shadow: $box-shadow;
-  animation: slideIn $transition-normal;
-
-  img {
-    width: 100%;
-    height: 400px;
-    object-fit: cover;
-  }
-
-  .content {
-    padding: 30px;
-
-    h2 {
-      font-size: 2.5rem;
-      margin-bottom: 20px;
-      line-height: 1.2;
-    }
-
-    p {
-      font-size: 1.1rem;
-      margin-bottom: 30px;
-    }
-  }
-}
-
-// News section styles
-.news {
-  background: $dark-bg;
-  padding: 30px;
-  border-radius: $border-radius;
-  color: $light-bg;
-  height: fit-content;
-
-  h3 {
-    color: $highlight-color;
-    margin-top: 0;
-    font-size: 1.5rem;
-    margin-bottom: 20px;
-  }
-
-  article {
-    padding: 20px 0;
-    border-bottom: 1px solid rgba(255,255,255,0.1);
-
-    &:last-child {
-      border-bottom: none;
-      padding-bottom: 0;
-    }
-
-    h4 {
-      margin: 0 0 10px;
-      font-size: 1.2rem;
-      transition: color $transition-normal;
-
-      &:hover {
-        color: $highlight-color;
-        cursor: pointer;
-      }
-    }
-
-    p {
-      margin: 0;
-      color: rgba(255,255,255,0.7);
-      line-height: 1.5;
-    }
   }
 }
 

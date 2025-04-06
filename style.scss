@@ -374,7 +374,7 @@ footer {
   max-width: 1200px;
   margin: 0 auto;
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(3, 1fr);
   gap: 30px;
   padding: 40px 20px;
   animation: fadeIn $transition-slow;
@@ -461,7 +461,7 @@ footer {
 
 .popular-grid {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(3, 1fr);
   gap: 30px;
 }
 
@@ -546,8 +546,15 @@ footer {
 
 .trending-grid {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(3, 1fr);
   gap: 30px;
+
+  .trending-card.hot {
+    grid-column: span 3;
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 0;
+  }
 }
 
 .trending-card {
@@ -563,23 +570,6 @@ footer {
   &:hover {
     transform: translateY(-5px);
     box-shadow: 0 8px 16px rgba(0,0,0,0.1);
-  }
-
-  &.hot {
-    grid-column: 1 / -1;
-    display: grid;
-    grid-template-columns: 1.5fr 1fr;
-    gap: 0;
-
-    img {
-      height: 100%;
-    }
-
-    .trending-content {
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-    }
   }
 
   img {
@@ -650,8 +640,15 @@ footer {
 
 // Responsive styles
 @media (max-width: 1024px) {
-  .categories-grid {
+  .categories-grid,
+  .news-grid,
+  .popular-grid,
+  .trending-grid {
     grid-template-columns: repeat(2, 1fr);
+  }
+
+  .trending-card.hot {
+    grid-column: span 2 !important;
   }
 }
 
@@ -666,7 +663,8 @@ footer {
   }
 
   .trending-card.hot {
-    grid-template-columns: 1fr;
+    grid-column: span 1 !important;
+    grid-column: 1fr;
 
     img {
       height: 250px;

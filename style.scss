@@ -129,6 +129,12 @@ header {
   grid-template-columns: 2fr 1fr;
   gap: 20px;
   animation: fadeIn $transition-slow;
+
+  &.secondary-page {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+    padding: 40px 20px;
+  }
 }
 
 // Featured section
@@ -643,7 +649,8 @@ footer {
   .categories-grid,
   .news-grid,
   .popular-grid,
-  .trending-grid {
+  .trending-grid,
+  .container.secondary-page {
     grid-template-columns: repeat(2, 1fr);
   }
 
@@ -654,6 +661,7 @@ footer {
 
 @media (max-width: 768px) {
   .container,
+  .container.secondary-page,
   .categories-grid,
   .news-grid,
   .popular-grid,

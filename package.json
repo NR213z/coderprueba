@@ -1,0 +1,24 @@
+{
+  "name": "coderprueba",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "sass": "sass style.scss style.css --watch"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/NR213z/coderprueba.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/NR213z/coderprueba/issues"
+  },
+  "homepage": "https://github.com/NR213z/coderprueba#readme",
+  "description": "",
+  "devDependencies": {
+    "sass": "^1.71.1"
+  }
+}

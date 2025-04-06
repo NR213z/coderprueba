@@ -85,13 +85,20 @@ header nav a[aria-current=page]::after {
 .page-content {
   display: flex;
   flex-direction: column;
-  gap: 0;
+  gap: 60px;
   max-width: 1200px;
   margin: 0 auto;
-  padding: 40px 20px;
+  padding: 40px;
+}
+@media (max-width: 1240px) {
+  .page-content {
+    max-width: 95%;
+    padding: 30px;
+  }
 }
 
 .container {
+  width: 100%;
   display: grid;
   gap: 30px;
   animation: fadeIn 0.5s ease;
@@ -104,11 +111,11 @@ header nav a[aria-current=page]::after {
 }
 
 .articles {
+  width: 100%;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 30px;
   animation: fadeIn 0.5s ease;
-  margin-top: 30px;
 }
 .articles .article {
   background: #fff;
@@ -119,7 +126,6 @@ header nav a[aria-current=page]::after {
   height: 100%;
   display: flex;
   flex-direction: column;
-  animation: fadeIn 0.3s ease;
 }
 .articles .article:hover {
   transform: translateY(-5px);
@@ -135,8 +141,9 @@ header nav a[aria-current=page]::after {
   transform: scale(1.05);
 }
 .articles .article h3 {
-  margin: 15px;
-  font-size: 20px;
+  padding: 20px 20px 10px;
+  margin: 0;
+  font-size: 1.3rem;
   color: #333;
   transition: color 0.3s ease;
 }
@@ -144,9 +151,11 @@ header nav a[aria-current=page]::after {
   color: #e63946;
 }
 .articles .article p {
-  margin: 0 15px 15px;
+  padding: 0 20px 20px;
+  margin: 0;
   color: #666;
   flex-grow: 1;
+  line-height: 1.5;
 }
 
 .card {
@@ -228,16 +237,28 @@ header nav a[aria-current=page]::after {
 .featured .content {
   padding: 30px;
 }
+.featured .content h2 {
+  font-size: 2.5rem;
+  margin-bottom: 20px;
+  line-height: 1.2;
+}
+.featured .content p {
+  font-size: 1.1rem;
+  margin-bottom: 30px;
+}
 
 .news {
   background: #222;
   padding: 30px;
   border-radius: 10px;
   color: #fff;
+  height: fit-content;
 }
 .news h3 {
   color: #f4a261;
   margin-top: 0;
+  font-size: 1.5rem;
+  margin-bottom: 20px;
 }
 .news article {
   padding: 20px 0;
@@ -245,9 +266,11 @@ header nav a[aria-current=page]::after {
 }
 .news article:last-child {
   border-bottom: none;
+  padding-bottom: 0;
 }
 .news article h4 {
   margin: 0 0 10px;
+  font-size: 1.2rem;
   transition: color 0.3s ease;
 }
 .news article h4:hover {
@@ -257,6 +280,7 @@ header nav a[aria-current=page]::after {
 .news article p {
   margin: 0;
   color: rgba(255, 255, 255, 0.7);
+  line-height: 1.5;
 }
 
 .views {
@@ -303,17 +327,20 @@ header nav a[aria-current=page]::after {
 
 @media (max-width: 1024px) {
   .page-content {
-    padding: 20px;
+    padding: 25px;
+    gap: 40px;
   }
-  .container.secondary-page,
   .container:not(.secondary-page) {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: 1fr;
+  }
+  .featured {
+    grid-column: span 1;
+  }
+  .featured .content h2 {
+    font-size: 2rem;
   }
   .articles {
     grid-template-columns: repeat(2, 1fr);
-  }
-  .featured {
-    grid-column: span 2;
   }
   header nav ul {
     gap: 20px;
@@ -321,14 +348,13 @@ header nav a[aria-current=page]::after {
 }
 @media (max-width: 768px) {
   .page-content {
-    padding: 10px;
+    padding: 20px;
+    gap: 30px;
   }
   .container,
-  .container.secondary-page,
-  .container:not(.secondary-page),
   .articles {
     grid-template-columns: 1fr;
-    padding: 20px;
+    gap: 25px;
   }
   header {
     text-align: center;
@@ -338,15 +364,29 @@ header nav a[aria-current=page]::after {
     flex-direction: column;
     gap: 15px;
   }
-  .featured {
-    grid-column: span 1;
-  }
   .featured img {
     height: 250px;
   }
-  .card img,
+  .featured .content h2 {
+    font-size: 1.75rem;
+  }
   .article img {
     height: 200px;
+  }
+  .article h3 {
+    font-size: 1.2rem;
+  }
+}
+@media (max-width: 480px) {
+  .page-content {
+    padding: 15px;
+    gap: 25px;
+  }
+  .featured .content {
+    padding: 20px;
+  }
+  .featured .content h2 {
+    font-size: 1.5rem;
   }
 }
 

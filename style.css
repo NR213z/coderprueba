@@ -82,10 +82,16 @@ header nav a[aria-current=page]::after {
   width: 100%;
 }
 
-.container {
+.page-content {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
   max-width: 1200px;
   margin: 0 auto;
   padding: 40px 20px;
+}
+
+.container {
   display: grid;
   gap: 30px;
   animation: fadeIn 0.5s ease;
@@ -98,13 +104,11 @@ header nav a[aria-current=page]::after {
 }
 
 .articles {
-  max-width: 1200px;
-  margin: 40px auto;
-  padding: 0 20px;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 30px;
   animation: fadeIn 0.5s ease;
+  margin-top: 30px;
 }
 .articles .article {
   background: #fff;
@@ -298,6 +302,9 @@ header nav a[aria-current=page]::after {
 }
 
 @media (max-width: 1024px) {
+  .page-content {
+    padding: 20px;
+  }
   .container.secondary-page,
   .container:not(.secondary-page) {
     grid-template-columns: repeat(2, 1fr);
@@ -313,6 +320,9 @@ header nav a[aria-current=page]::after {
   }
 }
 @media (max-width: 768px) {
+  .page-content {
+    padding: 10px;
+  }
   .container,
   .container.secondary-page,
   .container:not(.secondary-page),

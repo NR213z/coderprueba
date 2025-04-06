@@ -3,15 +3,24 @@
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Las últimas noticias y tendencias en tecnología, Web 3.0, IA y más. Mantente actualizado con las innovaciones del mundo tech.">
+  <meta name="keywords" content="tecnología, Web 3.0, IA, noticias tech, innovación, coches eléctricos, arte digital">
+  <meta name="author" content="Coder Prueba">
+  <meta name="robots" content="index, follow">
+  <meta property="og:title" content="Lo último en tecnología - Coder Prueba">
+  <meta property="og:description" content="Descubre las últimas tendencias en tecnología, Web 3.0, IA y más.">
+  <meta property="og:image" content="./images/image-web-3-desktop.jpg">
+  <meta property="og:url" content="https://tu-dominio.com">
   <link rel="stylesheet" href="style.css">
-  <title>Coder prueba 1</title>
- </head>
+  <title>Lo último en tecnología - Coder Prueba</title>
+</head>
+<body>
  <header>
-  <h1>Lo último en tecnologia</h1>
-  <nav>
+  <h1>Lo último en tecnología</h1>
+  <nav aria-label="Navegación principal">
       <ul>
-          <li><a href="index.html">Inicio</a></li>
+          <li><a href="index.html" aria-current="page">Inicio</a></li>
           <li><a href="new.html">Nuevo</a></li>
           <li><a href="popular.html">Popular</a></li>
           <li><a href="trending.html">Tendencias</a></li>
@@ -21,48 +30,52 @@
 </header>
 
 <main class="container">
-  <section class="featured">
-<img src="./images/image-web-3-desktop.jpg" alt="Img-Prueba">
-<div class="content">
-  <h2>¿El Brillante Futuro de la Web 3.0?</h2>
-  <p>Nos adentramos en la próxima evolución de la web que promete devolver el poder de las plataformas a las manos de las personas. ¿Pero realmente está cumpliendo su promesa?</p>
-  <button>LEER MÁS</button>
-</div>
-</section>
+  <section class="featured" aria-labelledby="featured-title">
+    <img src="./images/image-web-3-desktop.jpg" alt="Representación visual de la Web 3.0 y tecnologías emergentes" width="1200" height="600">
+    <div class="content">
+      <h2 id="featured-title">¿El Brillante Futuro de la Web 3.0?</h2>
+      <p>Nos adentramos en la próxima evolución de la web que promete devolver el poder de las plataformas a las manos de las personas. ¿Pero realmente está cumpliendo su promesa?</p>
+      <button aria-label="Leer más sobre Web 3.0">LEER MÁS</button>
+    </div>
+  </section>
 
-<aside class="news">
-<h3>Nuevo</h3>
-<article>
-  <h4>Hidrógeno VS Coches Eléctricos</h4>
-  <p>¿Alcanzarán los coches propulsados por hidrógeno a los vehículos eléctricos?</p>
-</article>
-<article>
-  <h4>Los Inconvenientes del Arte con IA</h4>
-  <p>¿Cuáles son los posibles efectos adversos de la generación de imágenes con IA bajo demanda?</p>
-</article>
-<article>
-  <h4>¿Se está Secando la Financiación de Capital Riesgo?</h4>
-  <p>La financiación privada por parte de firmas de capital riesgo ha caído un 50% en comparación con el año anterior. Analizamos qué significa esto.</p>
-</article>
-</aside>
+  <aside class="news" aria-label="Noticias destacadas">
+    <h3>Nuevo</h3>
+    <article>
+      <h4>Hidrógeno VS Coches Eléctricos</h4>
+      <p>¿Alcanzarán los coches propulsados por hidrógeno a los vehículos eléctricos?</p>
+    </article>
+    <article>
+      <h4>Los Inconvenientes del Arte con IA</h4>
+      <p>¿Cuáles son los posibles efectos adversos de la generación de imágenes con IA bajo demanda?</p>
+    </article>
+    <article>
+      <h4>¿Se está Secando la Financiación de Capital Riesgo?</h4>
+      <p>La financiación privada por parte de firmas de capital riesgo ha caído un 50% en comparación con el año anterior. Analizamos qué significa esto.</p>
+    </article>
+  </aside>
 </main>
 
-<section class="articles">
-<div class="article">
-<img src="./images/image-retro-pcs.jpg" alt="PCs Retro">
-<h3>01 Reviviendo PCs Retro</h3>
-<p>¿Qué sucede cuando las PCs antiguas reciben actualizaciones modernas?</p>
-</div>
-<div class="article">
-<img src="./images/image-top-laptops.jpg" alt="Portátiles">
-<h3>02 Los 10 Mejores Portátiles de 2022</h3>
-<p>Nuestras mejores selecciones para diversas necesidades y presupuestos.</p>
-</div>
-<div class="article">
-<img src="./images/image-gaming-growth.jpg" alt="Juegos">
-<h3>03 El Crecimiento de los Videojuegos</h3>
-<p>Cómo la pandemia ha generado nuevas oportunidades.</p>
-</div>
+<section class="articles" aria-label="Artículos destacados">
+  <article class="article">
+    <img src="./images/image-retro-pcs.jpg" alt="Computadoras retro siendo actualizadas con tecnología moderna" width="400" height="300">
+    <h3>01 Reviviendo PCs Retro</h3>
+    <p>¿Qué sucede cuando las PCs antiguas reciben actualizaciones modernas?</p>
+  </article>
+  <article class="article">
+    <img src="./images/image-top-laptops.jpg" alt="Los mejores portátiles del 2022 en exhibición" width="400" height="300">
+    <h3>02 Los 10 Mejores Portátiles de 2022</h3>
+    <p>Nuestras mejores selecciones para diversas necesidades y presupuestos.</p>
+  </article>
+  <article class="article">
+    <img src="./images/image-gaming-growth.jpg" alt="Crecimiento de la industria de videojuegos durante la pandemia" width="400" height="300">
+    <h3>03 El Crecimiento de los Videojuegos</h3>
+    <p>Cómo la pandemia ha generado nuevas oportunidades.</p>
+  </article>
 </section>
+
+<footer>
+  <p>&copy; 2024 Lo último en tecnología. Todos los derechos reservados.</p>
+</footer>
 </body>
 </html>

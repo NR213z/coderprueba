@@ -97,6 +97,54 @@ header nav a[aria-current=page]::after {
   grid-template-columns: repeat(3, 1fr);
 }
 
+.articles {
+  max-width: 1200px;
+  margin: 40px auto;
+  padding: 0 20px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 30px;
+  animation: fadeIn 0.5s ease;
+}
+.articles .article {
+  background: #fff;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  animation: fadeIn 0.3s ease;
+}
+.articles .article:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+}
+.articles .article img {
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+.articles .article img:hover {
+  transform: scale(1.05);
+}
+.articles .article h3 {
+  margin: 15px;
+  font-size: 20px;
+  color: #333;
+  transition: color 0.3s ease;
+}
+.articles .article h3:hover {
+  color: #e63946;
+}
+.articles .article p {
+  margin: 0 15px 15px;
+  color: #666;
+  flex-grow: 1;
+}
+
 .card {
   background: #fff;
   border-radius: 10px;
@@ -254,6 +302,9 @@ header nav a[aria-current=page]::after {
   .container:not(.secondary-page) {
     grid-template-columns: repeat(2, 1fr);
   }
+  .articles {
+    grid-template-columns: repeat(2, 1fr);
+  }
   .featured {
     grid-column: span 2;
   }
@@ -264,7 +315,8 @@ header nav a[aria-current=page]::after {
 @media (max-width: 768px) {
   .container,
   .container.secondary-page,
-  .container:not(.secondary-page) {
+  .container:not(.secondary-page),
+  .articles {
     grid-template-columns: 1fr;
     padding: 20px;
   }
@@ -282,7 +334,8 @@ header nav a[aria-current=page]::after {
   .featured img {
     height: 250px;
   }
-  .card img {
+  .card img,
+  .article img {
     height: 200px;
   }
 }

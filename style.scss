@@ -385,6 +385,102 @@ header {
   }
 }
 
+// Trending section styles
+.trending-section {
+  margin-top: 60px;
+  padding: 40px 0;
+  width: 100%;
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+
+  @media (max-width: 1240px) {
+    max-width: 95%;
+    padding: 30px 20px;
+  }
+
+  .trending-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+    margin-top: 30px;
+
+    @media (max-width: 768px) {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  .trending-card {
+    background: $light-bg;
+    border-radius: $border-radius;
+    overflow: hidden;
+    box-shadow: $box-shadow;
+    transition: all $transition-normal;
+
+    &:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 16px rgba(0,0,0,0.15);
+    }
+
+    img {
+      width: 100%;
+      height: 220px;
+      object-fit: cover;
+      transition: transform $transition-normal;
+
+      &:hover {
+        transform: scale(1.05);
+      }
+    }
+
+    .trending-content {
+      padding: 25px;
+
+      .trending-tag {
+        display: inline-block;
+        background: $accent-color;
+        color: white;
+        padding: 5px 15px;
+        border-radius: 20px;
+        font-size: 0.9rem;
+        margin-bottom: 15px;
+      }
+
+      h3 {
+        margin: 0 0 15px;
+        font-size: 1.5rem;
+        color: $text-color;
+        transition: color $transition-normal;
+
+        &:hover {
+          color: $accent-color;
+        }
+      }
+
+      p {
+        margin: 0;
+        color: $text-light;
+        line-height: 1.6;
+      }
+
+      .trending-stats {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+        margin-top: 20px;
+        color: $text-light;
+        font-size: 0.9rem;
+
+        .stat {
+          display: flex;
+          align-items: center;
+          gap: 5px;
+        }
+      }
+    }
+  }
+}
+
 // Responsive styles
 @media (max-width: 1024px) {
   .page-content {
